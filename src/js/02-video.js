@@ -9,6 +9,9 @@ player.on(
   _.throttle(function (event) {
     localStorage.setItem('videoplayer-current-time', JSON.stringify(event.seconds));
   }, 1000),
+);
+
+if (localStorage.length) {
   player
     .setCurrentTime(JSON.parse(localStorage.getItem('videoplayer-current-time')))
     .then(function (seconds) {
@@ -24,5 +27,5 @@ player.on(
           console.log('ошибки с другими причинами');
           break;
       }
-    }),
-);
+    });
+}
