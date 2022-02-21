@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const formRef = document.querySelector('form');
 
-if (localStorage.length) {
+if (localStorage.getItem('feedback-form-state')) {
   const formInfo = storage.load('feedback-form-state');
   const localStorageArr = Object.keys(formInfo);
 
@@ -25,7 +25,11 @@ function updateLocalStorage() {
 }
 
 function clearFormAndLocalStorage(event) {
-  event.preventDefault();
-  localStorage.clear();
-  formRef.reset();
+  if (event.currentTarget.elements.message.value) {
+    event.preventDefault();
+    localStorage.clear();
+    formRef.reset();
+  } else {
+    alert('Заполните все поля');
+  }
 }
