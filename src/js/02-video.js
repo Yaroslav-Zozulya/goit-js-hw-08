@@ -11,7 +11,7 @@ player.on(
   }, 1000),
 );
 
-if (localStorage.length) {
+if (localStorage.getItem('videoplayer-current-time')) {
   player
     .setCurrentTime(JSON.parse(localStorage.getItem('videoplayer-current-time')))
     .then(function (seconds) {
